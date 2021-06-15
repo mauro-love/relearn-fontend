@@ -15,14 +15,13 @@
         placeholder="密码"
         :rules="[{ required: true, message: '请填写密码' }]"/>
       <div style="margin: 16px">
-        <van-button round block type="info" native-type="submit"
-          >提交</van-button
-        >
+        <van-button round block type="info" native-type="submit">提交</van-button>
       </div>
     </van-form>
   </div>
 </template>
 <script>
+import Strategy from '../assets/utils'
 export default {
   data () {
     return {
@@ -32,7 +31,9 @@ export default {
   },
   methods: {
     onSubmit (values) {
-      this.test(this.username)
+      const strate = new Strategy()
+      strate.add(this.username, 'isNonEmpty')
+      // this.test(this.username)
       console.log('submit', values)
     },
     test (val) {
